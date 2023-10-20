@@ -1,5 +1,42 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
 
+  @if (Auth::user()->type == 0)
+  <div class="d-flex align-items-center justify-content-between">
+    <a href="index.html" class="logo d-flex align-items-center">
+      <img src="{{ asset('assets/img/kabar.png') }}" alt="">
+      <span class="d-none d-lg-block">Kabar News</span>  
+    </a>
+  </div><!-- End Logo -->
+
+  <!-- End Search Bar -->
+
+  <nav class="header-nav ms-auto">
+    <ul class="d-flex align-items-center">
+
+      <!-- End Search Icon-->
+
+      
+      <li class="nav-item dropdown pe-5">
+        <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+          <img src="{{ asset('assets/img/profile.png') }}" alt="Profile" class="rounded-circle">
+          <span class="d-none d-md-block dropdown-toggle ps-2">Hi, {{ Auth::user()->name }}</span>
+        </a><!-- End Profile Iamge Icon -->
+
+        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+          <li>
+            <form action="{{ url('user/logout') }}" method="POST">
+              @csrf
+              <button type="submit" class="dropdown-item d-flex align-items-center"><i class="bi bi-box-arrow-right"></i>
+                <span>Log Out</span></button>
+            </form>              
+          </li>
+        </ul><!-- End Profile Dropdown Items -->
+      </li><!-- End Profile Nav -->
+
+    </ul>
+  </nav>
+
+  @else
   <div class="d-flex align-items-center justify-content-between">
     <a href="index.html" class="logo d-flex align-items-center">
       <img src="{{ asset('assets/img/kabar.png') }}" alt="">
@@ -23,8 +60,9 @@
           <i class="bi bi-search"></i>
         </a>
       </li><!-- End Search Icon-->
-      <li class="nav-item dropdown pe-5">
 
+      
+      <li class="nav-item dropdown pe-5">
         <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
           <img src="{{ asset('assets/img/profile.png') }}" alt="Profile" class="rounded-circle">
           <span class="d-none d-md-block dropdown-toggle ps-2">Hi, {{ Auth::user()->name }}</span>
@@ -43,4 +81,5 @@
 
     </ul>
   </nav>
+  @endif
   </header><!-- End Header -->

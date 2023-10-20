@@ -36,17 +36,18 @@ class UserController extends Controller
         ];
         User::create($data);
 
-        $loginReg = [
+        $credentials = [
             'email' => $request->email,
             'password' => $request->password
 
         ];
 
-        if (Auth::attempt($loginReg)) {
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
             if (Auth::user()->type == 1) {
-                return redirect ('user');
+                return redirect()->intended('user');
             } else {
-                return view ('home');
+                return redirect()->intended('home');
             }
             
         }

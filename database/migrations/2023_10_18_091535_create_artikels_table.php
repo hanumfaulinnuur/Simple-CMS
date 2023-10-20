@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('artikels', function (Blueprint $table) {
             $table->id();
-            $table->integer('category_id');
+            $table->unsignedBigInteger('category_id');
             $table->string('title');
             $table->string('author');
             $table->string('slug');
@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('picture');
             $table->text('body');
             $table->timestamps();
+
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 

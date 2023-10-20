@@ -1,4 +1,4 @@
-@extends('layout.front')
+@extends('layout.master')
 @section('content')
 @section('title', 'Dahboard')
 

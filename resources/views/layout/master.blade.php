@@ -38,9 +38,11 @@
       @include('layout.app.header')
       <!-- =======End Header ======= -->
       
+      @if (Auth::user()->type == 1)
       <!-- =======   Sidebar ======= -->
       @include('layout.app.sidebar')
       <!-- ======= End Sidebar ======= -->
+      @endif
       
       @endif
 
